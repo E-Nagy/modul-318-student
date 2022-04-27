@@ -91,7 +91,7 @@
             this.connectionsDeparturesTable.Name = "connectionsDeparturesTable";
             this.connectionsDeparturesTable.ReadOnly = true;
             this.connectionsDeparturesTable.RowTemplate.Height = 25;
-            this.connectionsDeparturesTable.Size = new System.Drawing.Size(469, 485);
+            this.connectionsDeparturesTable.Size = new System.Drawing.Size(469, 408);
             this.connectionsDeparturesTable.TabIndex = 5;
             // 
             // StartColumn
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 676);
+            this.ClientSize = new System.Drawing.Size(555, 627);
             this.Controls.Add(this.showDeparturesButton);
             this.Controls.Add(this.departureLabel);
             this.Controls.Add(this.showConnectionsButton);
