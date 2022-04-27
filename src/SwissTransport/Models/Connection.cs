@@ -1,3 +1,5 @@
+using SwissTransport.Core;
+
 namespace SwissTransport.Models
 {
     using Newtonsoft.Json;

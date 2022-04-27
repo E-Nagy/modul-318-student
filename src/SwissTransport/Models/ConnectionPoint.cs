@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace SwissTransport.Models
 {
     using System;
