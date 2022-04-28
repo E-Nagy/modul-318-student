@@ -12,7 +12,7 @@ namespace SwissTransportApp
             InitializeComponent();
         }
 
-
+        
 
 
         private void ShowConnectionsButton_Click(object sender, EventArgs e)
@@ -22,7 +22,7 @@ namespace SwissTransportApp
             ITransport transport = new Transport();
 
 
-            var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text);
+            var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text, DepartureDatePicker.Value, DepartureTimePicker.Value);
 
             foreach (Connection connections in connectionsList.ConnectionList)
             {
@@ -48,7 +48,7 @@ namespace SwissTransportApp
 
             foreach (StationBoard stationBoard in departureList.Entries)
             {
-                var connectionsList = transport.GetConnections(startCombobox.Text, stationBoard.To);
+                var connectionsList = transport.GetConnections(startCombobox.Text, stationBoard.To, DepartureDatePicker.Value, DepartureTimePicker.Value);
                 DepartureTable.Rows.Add(
                     departureList.Station.Name,
                     stationBoard.To,
