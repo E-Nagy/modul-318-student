@@ -12,11 +12,12 @@ namespace SwissTransportApp
             InitializeComponent();
         }
 
-        
+
 
 
         private void ShowConnectionsButton_Click(object sender, EventArgs e)
         {
+            GridViewChanger.SelectedTab = ConnectionsTabPage;
 
             ITransport transport = new Transport();
 
@@ -31,26 +32,28 @@ namespace SwissTransportApp
                     connections.From.Platform,
                     connections.To.Station.Name,
                     connections.To.Arrival
-                    
+
                 );
             }
         }
 
         private void ShowDeparturesButton_Click(object sender, EventArgs e)
         {
+            GridViewChanger.SelectedTab = DeparturesTabPage;
+
             ITransport transport = new Transport();
 
             var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
-            
 
-            foreach (StationBoard stationBoard in departureList.Entries )
+
+            foreach (StationBoard stationBoard in departureList.Entries)
             {
                 var connectionsList = transport.GetConnections(startCombobox.Text, stationBoard.To);
                 DepartureTable.Rows.Add(
                     departureList.Station.Name,
                     stationBoard.To,
                     "anzeigen"
-                    
+
 
                 );
 
@@ -80,18 +83,9 @@ namespace SwissTransportApp
             }
 
 
-            if (arrivalCombobox.Text != "")
-            {
-                ITransport transportEnd = new Transport();
-
-                Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
-
-                foreach (Station station in arrivalStations.StationList)
-                {
-                    arrivalCombobox.Items.Add(station.Name);
-
-                }
-            }
         }
+
+
+        
     }
 }

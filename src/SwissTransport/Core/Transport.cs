@@ -55,6 +55,8 @@
             return this.GetObject<Connections>(uri);
         }
 
+
+
         public void Dispose()
         {
             this.httpClient?.Dispose();
