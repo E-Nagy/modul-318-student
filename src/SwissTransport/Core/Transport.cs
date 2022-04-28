@@ -19,7 +19,7 @@
                 throw new ArgumentNullException(nameof(query));
             }
 
-            var uri = new Uri($"{WebApiHost}locations?query={query}");
+            var uri = new Uri($"{WebApiHost}locations?query={query}&limit=10");
             return this.GetObject<Stations>(uri);
         }
 
@@ -35,7 +35,7 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
+            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}&limit=10");
             return this.GetObject<StationBoardRoot>(uri);
         }
 

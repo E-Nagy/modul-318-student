@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Security.Cryptography.X509Certificates;
 using SwissTransport.Core;
 using SwissTransport.Models;
 
@@ -24,7 +25,7 @@ namespace SwissTransportApp
 
             foreach (Connection connections in connectionsList.ConnectionList)
             {
-                connectionsDeparturesTable.Rows.Add(
+                connectionsTable.Rows.Add(
                     connections.From.Station.Name,
                     connections.From.Departure,
                     connections.From.Platform,
@@ -40,15 +41,18 @@ namespace SwissTransportApp
             ITransport transport = new Transport();
 
             var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
+            
 
-            foreach (StationBoard stationboard in departureList.Entries )
+            foreach (StationBoard stationBoard in departureList.Entries )
             {
-                connectionsDeparturesTable.Rows.Add(
-                    departureList.Station,
-                    stationboard.Stop.Departure
+                var connectionsList = transport.GetConnections(startCombobox.Text, stationBoard.To);
+                DepartureTable.Rows.Add(
+                    departureList.Station.Name,
+                    stationBoard.To,
+                    "anzeigen"
                     
-                    
-                    );
+
+                );
 
             }
 
@@ -58,24 +62,35 @@ namespace SwissTransportApp
         private void StationSearchButton_Click(object sender, EventArgs e)
         {
 
-            ITransport transportstart = new Transport();
 
-            Stations startStations = transportstart.GetStations(startCombobox.Text);
-
-            foreach (Station station in startStations.StationList )
+            if (startCombobox.Text != null)
             {
-                startCombobox.Items.Add(station.Name);
-                    
+                ITransport transportStart = new Transport();
+                Stations startStations = transportStart.GetStations(startCombobox.Text);
+
+                foreach (Station station in startStations.StationList)
+                {
+                    startCombobox.Items.Add(station.Name);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sie müssen mindestens einen Abfahrtsort angeben!");
             }
 
-            ITransport transportend = new Transport();
 
-            Stations arrivalStations = transportend.GetStations(startCombobox.Text);
-
-            foreach (Station station in arrivalStations.StationList)
+            if (arrivalCombobox.Text != "")
             {
-                arrivalCombobox.Items.Add(station.Name);
+                ITransport transportEnd = new Transport();
 
+                Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
+
+                foreach (Station station in arrivalStations.StationList)
+                {
+                    arrivalCombobox.Items.Add(station.Name);
+
+                }
             }
         }
     }
