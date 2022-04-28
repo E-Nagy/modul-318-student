@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.startLabel = new System.Windows.Forms.Label();
             this.arrivalLabel = new System.Windows.Forms.Label();
             this.DepartureDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -52,6 +52,7 @@
             this.Arrival = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ShowConnection = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DepartureTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.MapTabPage = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.connectionsTable)).BeginInit();
             this.GridViewChanger.SuspendLayout();
             this.ConnectionsTabPage.SuspendLayout();
@@ -113,8 +114,8 @@
             // 
             // StartColumn
             // 
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.StartColumn.HeaderText = "Abfahrtsort";
             this.StartColumn.Name = "StartColumn";
             this.StartColumn.ReadOnly = true;
@@ -206,6 +207,7 @@
             // 
             this.GridViewChanger.Controls.Add(this.ConnectionsTabPage);
             this.GridViewChanger.Controls.Add(this.DeparturesTabPage);
+            this.GridViewChanger.Controls.Add(this.MapTabPage);
             this.GridViewChanger.Location = new System.Drawing.Point(36, 199);
             this.GridViewChanger.Name = "GridViewChanger";
             this.GridViewChanger.SelectedIndex = 0;
@@ -275,6 +277,16 @@
             this.DepartureTimePicker.TabIndex = 11;
             this.DepartureTimePicker.Value = new System.DateTime(2022, 4, 28, 15, 56, 54, 0);
             // 
+            // MapTabPage
+            // 
+            this.MapTabPage.Location = new System.Drawing.Point(4, 24);
+            this.MapTabPage.Name = "MapTabPage";
+            this.MapTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MapTabPage.Size = new System.Drawing.Size(471, 437);
+            this.MapTabPage.TabIndex = 2;
+            this.MapTabPage.Text = "Karte";
+            this.MapTabPage.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -327,5 +339,6 @@
         private DataGridViewTextBoxColumn Arrival;
         private DataGridViewButtonColumn ShowConnection;
         private DateTimePicker DepartureTimePicker;
+        private TabPage MapTabPage;
     }
 }
