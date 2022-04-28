@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.startLabel = new System.Windows.Forms.Label();
             this.arrivalLabel = new System.Windows.Forms.Label();
             this.dateTimeDeparture = new System.Windows.Forms.DateTimePicker();
@@ -43,6 +43,7 @@
             this.showDeparturesButton = new System.Windows.Forms.Button();
             this.arrivalCombobox = new System.Windows.Forms.ComboBox();
             this.startCombobox = new System.Windows.Forms.ComboBox();
+            this.StationSearchButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.connectionsDeparturesTable)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             // 
             // dateTimeDeparture
             // 
-            this.dateTimeDeparture.Location = new System.Drawing.Point(305, 36);
+            this.dateTimeDeparture.Location = new System.Drawing.Point(119, 137);
             this.dateTimeDeparture.Name = "dateTimeDeparture";
             this.dateTimeDeparture.Size = new System.Drawing.Size(200, 23);
             this.dateTimeDeparture.TabIndex = 4;
@@ -87,17 +88,17 @@
             this.PlatformColumn,
             this.EndColumn,
             this.ArrivalTimeColumn});
-            this.connectionsDeparturesTable.Location = new System.Drawing.Point(36, 179);
+            this.connectionsDeparturesTable.Location = new System.Drawing.Point(36, 210);
             this.connectionsDeparturesTable.Name = "connectionsDeparturesTable";
             this.connectionsDeparturesTable.ReadOnly = true;
             this.connectionsDeparturesTable.RowTemplate.Height = 25;
-            this.connectionsDeparturesTable.Size = new System.Drawing.Size(469, 485);
+            this.connectionsDeparturesTable.Size = new System.Drawing.Size(469, 435);
             this.connectionsDeparturesTable.TabIndex = 5;
             // 
             // StartColumn
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.StartColumn.HeaderText = "Abfahrtsort";
             this.StartColumn.Name = "StartColumn";
             this.StartColumn.ReadOnly = true;
@@ -133,7 +134,7 @@
             // 
             // showConnectionsButton
             // 
-            this.showConnectionsButton.Location = new System.Drawing.Point(36, 150);
+            this.showConnectionsButton.Location = new System.Drawing.Point(36, 181);
             this.showConnectionsButton.Name = "showConnectionsButton";
             this.showConnectionsButton.Size = new System.Drawing.Size(146, 23);
             this.showConnectionsButton.TabIndex = 6;
@@ -144,15 +145,16 @@
             // departureLabel
             // 
             this.departureLabel.AutoSize = true;
-            this.departureLabel.Location = new System.Drawing.Point(249, 39);
+            this.departureLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.departureLabel.Location = new System.Drawing.Point(36, 143);
             this.departureLabel.Name = "departureLabel";
-            this.departureLabel.Size = new System.Drawing.Size(50, 15);
+            this.departureLabel.Size = new System.Drawing.Size(52, 17);
             this.departureLabel.TabIndex = 7;
             this.departureLabel.Text = "Abfahrt:";
             // 
             // showDeparturesButton
             // 
-            this.showDeparturesButton.Location = new System.Drawing.Point(359, 150);
+            this.showDeparturesButton.Location = new System.Drawing.Point(359, 181);
             this.showDeparturesButton.Name = "showDeparturesButton";
             this.showDeparturesButton.Size = new System.Drawing.Size(146, 23);
             this.showDeparturesButton.TabIndex = 8;
@@ -164,7 +166,7 @@
             // 
             this.arrivalCombobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.arrivalCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.arrivalCombobox.Location = new System.Drawing.Point(91, 90);
+            this.arrivalCombobox.Location = new System.Drawing.Point(119, 87);
             this.arrivalCombobox.Name = "arrivalCombobox";
             this.arrivalCombobox.Size = new System.Drawing.Size(121, 23);
             this.arrivalCombobox.TabIndex = 2;
@@ -174,16 +176,27 @@
             this.startCombobox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.startCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.startCombobox.FormattingEnabled = true;
-            this.startCombobox.Location = new System.Drawing.Point(91, 36);
+            this.startCombobox.Location = new System.Drawing.Point(119, 33);
             this.startCombobox.Name = "startCombobox";
             this.startCombobox.Size = new System.Drawing.Size(121, 23);
             this.startCombobox.TabIndex = 0;
+            // 
+            // StationSearchButton
+            // 
+            this.StationSearchButton.Location = new System.Drawing.Point(262, 33);
+            this.StationSearchButton.Name = "StationSearchButton";
+            this.StationSearchButton.Size = new System.Drawing.Size(90, 77);
+            this.StationSearchButton.TabIndex = 9;
+            this.StationSearchButton.Text = "Station suchen";
+            this.StationSearchButton.UseVisualStyleBackColor = true;
+            this.StationSearchButton.Click += new System.EventHandler(this.StationSearchButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(555, 676);
+            this.Controls.Add(this.StationSearchButton);
             this.Controls.Add(this.showDeparturesButton);
             this.Controls.Add(this.departureLabel);
             this.Controls.Add(this.showConnectionsButton);
@@ -216,5 +229,6 @@
         private Button showDeparturesButton;
         private ComboBox arrivalCombobox;
         private ComboBox startCombobox;
+        private Button StationSearchButton;
     }
 }

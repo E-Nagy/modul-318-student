@@ -39,10 +39,44 @@ namespace SwissTransportApp
         {
             ITransport transport = new Transport();
 
-            var departurelist = transport.GetConnections(startCombobox.Text, *)
+            var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
+
+            foreach (StationBoard stationboard in departureList.Entries )
+            {
+                connectionsDeparturesTable.Rows.Add(
+                    departureList.Station,
+                    stationboard.Stop.Departure
+                    
+                    
+                    );
+
+            }
+
 
         }
 
-       
+        private void StationSearchButton_Click(object sender, EventArgs e)
+        {
+
+            ITransport transportstart = new Transport();
+
+            Stations startStations = transportstart.GetStations(startCombobox.Text);
+
+            foreach (Station station in startStations.StationList )
+            {
+                startCombobox.Items.Add(station.Name);
+                    
+            }
+
+            ITransport transportend = new Transport();
+
+            Stations arrivalStations = transportend.GetStations(startCombobox.Text);
+
+            foreach (Station station in arrivalStations.StationList)
+            {
+                arrivalCombobox.Items.Add(station.Name);
+
+            }
+        }
     }
 }

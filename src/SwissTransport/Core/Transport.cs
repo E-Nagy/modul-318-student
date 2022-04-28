@@ -51,7 +51,7 @@
                 throw new ArgumentNullException(nameof(toStation));
             }
 
-            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
+            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}&limit=10");
             return this.GetObject<Connections>(uri);
         }
 
