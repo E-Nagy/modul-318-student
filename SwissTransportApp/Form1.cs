@@ -3,6 +3,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using SwissTransport.Core;
 using SwissTransport.Models;
+using System.Net.NetworkInformation;
+using System.Runtime;
+using System.Runtime.InteropServices;
 
 namespace SwissTransportApp
 {
@@ -22,10 +25,16 @@ namespace SwissTransportApp
 
             connectionsTable.Rows.Clear();
 
+            try
+            {
+                InternetConnection internetConnection = new InternetConnection();
+                internetConnection.CheckConnectionWifi();
+
                 ITransport transport = new Transport();
 
 
-                var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,DepartureDatePicker.Value, DepartureTimePicker.Value);
+                var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,
+                    DepartureDatePicker.Value, DepartureTimePicker.Value);
 
                 foreach (Connection connections in connectionsList.ConnectionList)
                 {
@@ -38,7 +47,13 @@ namespace SwissTransportApp
 
                     );
                 }
-            
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+
         }
 
         private void ShowDeparturesButton_Click(object sender, EventArgs e)
@@ -47,20 +62,30 @@ namespace SwissTransportApp
 
             DepartureTable.Rows.Clear();
 
-            ITransport transport = new Transport();
-
-            var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
-
-
-            foreach (StationBoard stationBoard in departureList.Entries)
+            try
             {
-                DepartureTable.Rows.Add(
+
+            
+                ITransport transport = new Transport();
+
+                var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
+
+
+                foreach (StationBoard stationBoard in departureList.Entries)
+                {
+                    DepartureTable.Rows.Add(
                     departureList.Station.Name,
                     stationBoard.To,
                     string.Format("{0:t}", stationBoard.Stop.Departure)
 
                 );
 
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
             }
 
         }
@@ -69,33 +94,42 @@ namespace SwissTransportApp
         private void StationSearchButton_Click(object sender, EventArgs e)
         {
 
-
-            if (startCombobox.Text != "")
+            try
             {
-                ITransport transportStart = new Transport();
-                Stations startStations = transportStart.GetStations(startCombobox.Text);
 
-                foreach (Station station in startStations.StationList)
+            
+                if (startCombobox.Text != "")
                 {
-                    startCombobox.Items.Add(station.Name);
+                    ITransport transportStart = new Transport();
+                    Stations startStations = transportStart.GetStations(startCombobox.Text);
 
-                }
-
-                if (arrivalCombobox.Text != "")
-                {
-                    ITransport transportEnd = new Transport();
-                    Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
-
-                    foreach (Station station in arrivalStations.StationList)
+                    foreach (Station station in startStations.StationList)
                     {
-                        arrivalCombobox.Items.Add(station.Name);
+                        startCombobox.Items.Add(station.Name);
 
                     }
+
+                    if (arrivalCombobox.Text != "")
+                    {
+                        ITransport transportEnd = new Transport();
+                        Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
+
+                        foreach (Station station in arrivalStations.StationList)
+                        {
+                            arrivalCombobox.Items.Add(station.Name);
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sie müssen mindestens einen Abfahrtsort angeben!");
                 }
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("Sie müssen mindestens einen Abfahrtsort angeben!");
+                Console.WriteLine(exception);
+                throw;
             }
 
 
@@ -103,27 +137,28 @@ namespace SwissTransportApp
 
         private void OnFormLoad(object sender, EventArgs e)
         {
-            GridViewChanger.SelectedTab = DeparturesTabPage;
+            try
+            {
+
+                InternetConnection internetConnection = new InternetConnection();
+                internetConnection.CheckConnectionWifi();
+
+                GridViewChanger.SelectedTab = DeparturesTabPage;
             
-            DepartureDatePicker.Value = DateTime.Now;
-            DepartureTimePicker.Value = DateTime.Now;
+                DepartureDatePicker.Value = DateTime.Now;
+                DepartureTimePicker.Value = DateTime.Now;
 
-            startCombobox.Text = "Adligenswil, Stuben";
+                startCombobox.Text = "Adligenswil, Stuben";
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
         }
 
-        private void SearchStartOnMap_Click(object sender, EventArgs e)
-        {
-            ITransport transport = new Transport();
 
-            GridViewChanger.SelectedTab = MapTabPage;
-
-            string startStation = startCombobox.Text;
-
-            StringBuilder querryAddress = new StringBuilder();
-
-
-
-        }
+        
     }
     
 }
