@@ -28,30 +28,47 @@ namespace SwissTransportApp
             try
             {
                 InternetConnection internetConnection = new InternetConnection();
-                internetConnection.CheckConnectionWifi();
-
-                ITransport transport = new Transport();
 
 
-                var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,
-                    DepartureDatePicker.Value, DepartureTimePicker.Value);
-
-                foreach (Connection connections in connectionsList.ConnectionList)
+                if (internetConnection.CheckConnectionWifi() == true)
                 {
-                    connectionsTable.Rows.Add(
-                        connections.From.Station.Name,
-                        string.Format("{0:t}", connections.From.Departure),
-                        connections.From.Platform,
-                        connections.To.Station.Name,
-                        string.Format("{0:t}", connections.To.Arrival)
+                    ITransport transport = new Transport();
 
-                    );
+
+                    //Get Data with input
+                    var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,
+                        DepartureDatePicker.Value, DepartureTimePicker.Value);
+
+                    //output
+                    foreach (Connection connections in connectionsList.ConnectionList)
+                    {
+                        connectionsTable.Rows.Add(
+                            connections.From.Station.Name,
+                            string.Format("{0:t}", connections.From.Departure),
+                            connections.From.Platform,
+                            connections.To.Station.Name,
+                            string.Format("{0:t}", connections.To.Arrival)
+
+                        );
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Bei der InternetVerbindung ist etwas schiefgelaufen!");
+                }
+
             }
-            catch (Exception exception)
+            catch (OverflowException overflowException)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(overflowException.ToString());
+            }
+            catch (FormatException formatException)
+            {
+                MessageBox.Show(formatException.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
             }
 
         }
@@ -60,32 +77,47 @@ namespace SwissTransportApp
         {
             GridViewChanger.SelectedTab = DeparturesTabPage;
 
+            InternetConnection internetConnection = new InternetConnection();
+
             DepartureTable.Rows.Clear();
 
             try
             {
-
-            
-                ITransport transport = new Transport();
-
-                var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
-
-
-                foreach (StationBoard stationBoard in departureList.Entries)
+                if (internetConnection.CheckConnectionWifi() == true)
                 {
-                    DepartureTable.Rows.Add(
-                    departureList.Station.Name,
-                    stationBoard.To,
-                    string.Format("{0:t}", stationBoard.Stop.Departure)
+                    ITransport transport = new Transport();
 
-                );
+                    //Get data with input
+                    var departureList = transport.GetStationBoard(startCombobox.Text, startCombobox.Text);
+
+                    //output
+                    foreach (StationBoard stationBoard in departureList.Entries)
+                    {
+                        DepartureTable.Rows.Add(
+                            departureList.Station.Name,
+                            stationBoard.To,
+                            string.Format("{0:t}", stationBoard.Stop.Departure)
+                        );
+                    }
 
                 }
+                else
+                {
+                    MessageBox.Show("Bei der Internetverbindung ist etwas schiefgelaufen!");
+                }
+
             }
-            catch (Exception exception)
+            catch (OverflowException overflowException)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(overflowException.ToString());
+            }
+            catch (FormatException formatException)
+            {
+                MessageBox.Show(formatException.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
             }
 
         }
@@ -97,39 +129,61 @@ namespace SwissTransportApp
             try
             {
 
-            
+
                 if (startCombobox.Text != "")
                 {
-                    ITransport transportStart = new Transport();
-                    Stations startStations = transportStart.GetStations(startCombobox.Text);
+                    InternetConnection internetConnection = new InternetConnection();
 
-                    foreach (Station station in startStations.StationList)
+                    if (internetConnection.CheckConnectionWifi() == true)
                     {
-                        startCombobox.Items.Add(station.Name);
+                        ITransport transportStart = new Transport();
 
-                    }
+                        //get data with input
+                        Stations startStations = transportStart.GetStations(startCombobox.Text);
 
-                    if (arrivalCombobox.Text != "")
-                    {
-                        ITransport transportEnd = new Transport();
-                        Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
-
-                        foreach (Station station in arrivalStations.StationList)
+                        //list add
+                        foreach (Station station in startStations.StationList)
                         {
-                            arrivalCombobox.Items.Add(station.Name);
+                            startCombobox.Items.Add(station.Name);
 
                         }
+
+                        if (arrivalCombobox.Text != "")
+                        {
+                            ITransport transportEnd = new Transport();
+                            //get data with input
+                            Stations arrivalStations = transportEnd.GetStations(arrivalCombobox.Text);
+
+                            //ouput
+                            foreach (Station station in arrivalStations.StationList)
+                            {
+                                arrivalCombobox.Items.Add(station.Name);
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bei der Internetverbindung ist etwas schiefgelaufen!");
                     }
                 }
                 else
                 {
                     MessageBox.Show("Sie müssen mindestens einen Abfahrtsort angeben!");
                 }
+
             }
-            catch (Exception exception)
+            catch (OverflowException overflowException)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(overflowException.ToString());
+            }
+            catch (FormatException formatException)
+            {
+                MessageBox.Show(formatException.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error");
             }
 
 
@@ -141,19 +195,34 @@ namespace SwissTransportApp
             {
 
                 InternetConnection internetConnection = new InternetConnection();
-                internetConnection.CheckConnectionWifi();
+                if (internetConnection.CheckConnectionWifi() == true)
+                {
+                    //standard input on load for automatical output
+                    GridViewChanger.SelectedTab = DeparturesTabPage;
 
-                GridViewChanger.SelectedTab = DeparturesTabPage;
-            
-                DepartureDatePicker.Value = DateTime.Now;
-                DepartureTimePicker.Value = DateTime.Now;
+                    DepartureDatePicker.Value = DateTime.Now;
+                    DepartureTimePicker.Value = DateTime.Now;
 
-                startCombobox.Text = "Adligenswil, Stuben";
+                    startCombobox.Text = "Adligenswil, Stuben";
+                }
+                else
+                {
+                    MessageBox.Show("Bei der Internetverbindung ist etwas schiefgelaufen!");
+                }
+
+
             }
-            catch (Exception exception)
+            catch (OverflowException overflowException)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(overflowException.ToString());
+            }
+            catch (FormatException formatException)
+            {
+                MessageBox.Show(formatException.ToString());
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("Error");
             }
         }
 

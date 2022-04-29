@@ -30,8 +30,8 @@ namespace SwissTransportApp
                 }
             }
             catch
-            { 
-                return false);
+            {
+                return false;
             }
 
         }
