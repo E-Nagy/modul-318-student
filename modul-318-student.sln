@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwissTransportTest", "tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwissTransportApp", "SwissTransportApp\SwissTransportApp.csproj", "{516ED2E5-6C3C-4979-AB4E-A4B72A8473CB}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SwissTransportSetup", "SwissTransportSetup\SwissTransportSetup.vdproj", "{5A93CF97-B04B-4267-8785-ACCC0B19D366}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SwissTransportSetup", "SwissTransportSetup\SwissTransportSetup.vdproj", "{E6567D7E-D9E2-44CE-9250-10DFC62D7836}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,8 +29,8 @@ Global
 		{516ED2E5-6C3C-4979-AB4E-A4B72A8473CB}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{516ED2E5-6C3C-4979-AB4E-A4B72A8473CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516ED2E5-6C3C-4979-AB4E-A4B72A8473CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A93CF97-B04B-4267-8785-ACCC0B19D366}.Debug|Any CPU.ActiveCfg = Release
-		{5A93CF97-B04B-4267-8785-ACCC0B19D366}.Release|Any CPU.ActiveCfg = Release
+		{E6567D7E-D9E2-44CE-9250-10DFC62D7836}.Debug|Any CPU.ActiveCfg = Debug
+		{E6567D7E-D9E2-44CE-9250-10DFC62D7836}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
