@@ -97,6 +97,8 @@
             // connectionsTable
             // 
             this.connectionsTable.AllowUserToOrderColumns = true;
+            this.connectionsTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.connectionsTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.connectionsTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.connectionsTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
@@ -111,7 +113,7 @@
             this.connectionsTable.Name = "connectionsTable";
             this.connectionsTable.ReadOnly = true;
             this.connectionsTable.RowTemplate.Height = 25;
-            this.connectionsTable.Size = new System.Drawing.Size(469, 435);
+            this.connectionsTable.Size = new System.Drawing.Size(469, 387);
             this.connectionsTable.TabIndex = 11;
             this.connectionsTable.UseWaitCursor = true;
             // 
@@ -149,8 +151,7 @@
             // 
             // showConnectionsButton
             // 
-            this.showConnectionsButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.showConnectionsButton.Location = new System.Drawing.Point(36, 170);
+            this.showConnectionsButton.Location = new System.Drawing.Point(66, 170);
             this.showConnectionsButton.Name = "showConnectionsButton";
             this.showConnectionsButton.Size = new System.Drawing.Size(146, 23);
             this.showConnectionsButton.TabIndex = 8;
@@ -172,8 +173,7 @@
             // 
             // showDeparturesButton
             // 
-            this.showDeparturesButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.showDeparturesButton.Location = new System.Drawing.Point(188, 170);
+            this.showDeparturesButton.Location = new System.Drawing.Point(218, 170);
             this.showDeparturesButton.Name = "showDeparturesButton";
             this.showDeparturesButton.Size = new System.Drawing.Size(146, 23);
             this.showDeparturesButton.TabIndex = 9;
@@ -216,15 +216,14 @@
             // 
             // GridViewChanger
             // 
-            this.GridViewChanger.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.GridViewChanger.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GridViewChanger.Controls.Add(this.ConnectionsTabPage);
             this.GridViewChanger.Controls.Add(this.DeparturesTabPage);
             this.GridViewChanger.Location = new System.Drawing.Point(36, 199);
             this.GridViewChanger.Name = "GridViewChanger";
             this.GridViewChanger.SelectedIndex = 0;
-            this.GridViewChanger.Size = new System.Drawing.Size(479, 465);
+            this.GridViewChanger.Size = new System.Drawing.Size(479, 414);
             this.GridViewChanger.TabIndex = 10;
             this.GridViewChanger.UseWaitCursor = true;
             // 
@@ -234,7 +233,7 @@
             this.ConnectionsTabPage.Location = new System.Drawing.Point(4, 24);
             this.ConnectionsTabPage.Name = "ConnectionsTabPage";
             this.ConnectionsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ConnectionsTabPage.Size = new System.Drawing.Size(471, 437);
+            this.ConnectionsTabPage.Size = new System.Drawing.Size(471, 386);
             this.ConnectionsTabPage.TabIndex = 0;
             this.ConnectionsTabPage.Text = "Verbindungen";
             this.ConnectionsTabPage.UseVisualStyleBackColor = true;
@@ -246,7 +245,7 @@
             this.DeparturesTabPage.Location = new System.Drawing.Point(4, 24);
             this.DeparturesTabPage.Name = "DeparturesTabPage";
             this.DeparturesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.DeparturesTabPage.Size = new System.Drawing.Size(471, 437);
+            this.DeparturesTabPage.Size = new System.Drawing.Size(471, 386);
             this.DeparturesTabPage.TabIndex = 1;
             this.DeparturesTabPage.Text = "Abfahrten";
             this.DeparturesTabPage.UseVisualStyleBackColor = true;
@@ -254,6 +253,8 @@
             // 
             // DepartureTable
             // 
+            this.DepartureTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DepartureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DepartureTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DepartureTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -263,7 +264,7 @@
             this.DepartureTable.Location = new System.Drawing.Point(0, 2);
             this.DepartureTable.Name = "DepartureTable";
             this.DepartureTable.RowTemplate.Height = 25;
-            this.DepartureTable.Size = new System.Drawing.Size(471, 435);
+            this.DepartureTable.Size = new System.Drawing.Size(471, 388);
             this.DepartureTable.TabIndex = 12;
             this.DepartureTable.UseWaitCursor = true;
             // 
@@ -299,7 +300,7 @@
             this.AcceptButton = this.showDeparturesButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 676);
+            this.ClientSize = new System.Drawing.Size(551, 625);
             this.Controls.Add(this.DepartureTimePicker);
             this.Controls.Add(this.GridViewChanger);
             this.Controls.Add(this.StationSearchButton);

@@ -52,7 +52,7 @@
             }
 
             string dateString = date.ToString("yyyy-MM-dd");
-            string timeString = time.ToString("hh:mm");
+            string timeString = time.ToString("HH:mm");
 
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}&date={dateString}&time={timeString}&limit=10");
             return this.GetObject<Connections>(uri);

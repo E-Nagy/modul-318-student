@@ -13,12 +13,12 @@ namespace SwissTransportApp
     {
         public bool CheckConnectionWifi()
         {
-            string host = "142.250.184.46";
+            string googleHost = "142.250.184.46";
             int result = 1;
             Ping p = new Ping();
             try
             {
-                PingReply reply = p.Send(host, 2000);
+                PingReply reply = p.Send(googleHost, 2000);
                 if (reply.Status == IPStatus.DestinationHostUnreachable)
                 {
                     return false;

@@ -32,24 +32,31 @@ namespace SwissTransportApp
 
                 if (internetConnection.CheckConnectionWifi() == true)
                 {
-                    ITransport transport = new Transport();
-
-
-                    //Get Data with input
-                    var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,
-                        DepartureDatePicker.Value, DepartureTimePicker.Value);
-
-                    //output
-                    foreach (Connection connections in connectionsList.ConnectionList)
+                    if (startCombobox.Text != "" && arrivalCombobox.Text != "")
                     {
-                        connectionsTable.Rows.Add(
-                            connections.From.Station.Name,
-                            string.Format("{0:t}", connections.From.Departure),
-                            connections.From.Platform,
-                            connections.To.Station.Name,
-                            string.Format("{0:t}", connections.To.Arrival)
+                        ITransport transport = new Transport();
 
-                        );
+
+                        //Get Data with input
+                        var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,
+                            DepartureDatePicker.Value, DepartureTimePicker.Value);
+
+                        //output
+                        foreach (Connection connections in connectionsList.ConnectionList)
+                        {
+                            connectionsTable.Rows.Add(
+                                connections.From.Station.Name,
+                                string.Format("{0:t}", connections.From.Departure),
+                                connections.From.Platform,
+                                connections.To.Station.Name,
+                                string.Format("{0:t}", connections.To.Arrival)
+
+                            );
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sie müssen eine Startstation und eine Endtsation angeben!");
                     }
                 }
                 else
@@ -73,6 +80,9 @@ namespace SwissTransportApp
 
         }
 
+
+
+
         private void ShowDeparturesButton_Click(object sender, EventArgs e)
         {
             GridViewChanger.SelectedTab = DeparturesTabPage;
@@ -83,6 +93,7 @@ namespace SwissTransportApp
 
             try
             {
+                
                 if (internetConnection.CheckConnectionWifi() == true)
                 {
                     ITransport transport = new Transport();
@@ -97,7 +108,7 @@ namespace SwissTransportApp
                             departureList.Station.Name,
                             stationBoard.To,
                             string.Format("{0:t}", stationBoard.Stop.Departure)
-                        );
+                            );
                     }
 
                 }
@@ -105,6 +116,8 @@ namespace SwissTransportApp
                 {
                     MessageBox.Show("Bei der Internetverbindung ist etwas schiefgelaufen!");
                 }
+                
+                
 
             }
             catch (OverflowException overflowException)
@@ -121,6 +134,8 @@ namespace SwissTransportApp
             }
 
         }
+
+
 
 
         private void StationSearchButton_Click(object sender, EventArgs e)
@@ -158,7 +173,6 @@ namespace SwissTransportApp
                             foreach (Station station in arrivalStations.StationList)
                             {
                                 arrivalCombobox.Items.Add(station.Name);
-
                             }
                         }
                     }
@@ -188,6 +202,8 @@ namespace SwissTransportApp
 
 
         }
+
+
 
         private void OnFormLoad(object sender, EventArgs e)
         {
