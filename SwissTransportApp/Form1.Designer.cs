@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.startLabel = new System.Windows.Forms.Label();
             this.arrivalLabel = new System.Windows.Forms.Label();
             this.DepartureDatePicker = new System.Windows.Forms.DateTimePicker();
@@ -50,14 +50,18 @@
             this.DepartureTable = new System.Windows.Forms.DataGridView();
             this.DeparturePlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Arrival = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ShowConnection = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.DepartureTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ShowDepartureTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MapTabPage = new System.Windows.Forms.TabPage();
+            this.DepartureTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.MapWebWebView = new Microsoft.Web.WebView2.WinForms.WebView2();
+            this.SearchStartOnMap = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.connectionsTable)).BeginInit();
             this.GridViewChanger.SuspendLayout();
             this.ConnectionsTabPage.SuspendLayout();
             this.DeparturesTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DepartureTable)).BeginInit();
+            this.MapTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MapWebWebView)).BeginInit();
             this.SuspendLayout();
             // 
             // startLabel
@@ -69,6 +73,7 @@
             this.startLabel.Size = new System.Drawing.Size(39, 17);
             this.startLabel.TabIndex = 1;
             this.startLabel.Text = "Start :";
+            this.startLabel.UseWaitCursor = true;
             // 
             // arrivalLabel
             // 
@@ -79,6 +84,7 @@
             this.arrivalLabel.Size = new System.Drawing.Size(34, 17);
             this.arrivalLabel.TabIndex = 3;
             this.arrivalLabel.Text = "Ziel :";
+            this.arrivalLabel.UseWaitCursor = true;
             // 
             // DepartureDatePicker
             // 
@@ -90,6 +96,7 @@
             this.DepartureDatePicker.Name = "DepartureDatePicker";
             this.DepartureDatePicker.Size = new System.Drawing.Size(153, 23);
             this.DepartureDatePicker.TabIndex = 3;
+            this.DepartureDatePicker.UseWaitCursor = true;
             this.DepartureDatePicker.Value = new System.DateTime(2022, 4, 28, 0, 0, 0, 0);
             // 
             // connectionsTable
@@ -111,11 +118,12 @@
             this.connectionsTable.RowTemplate.Height = 25;
             this.connectionsTable.Size = new System.Drawing.Size(469, 435);
             this.connectionsTable.TabIndex = 6;
+            this.connectionsTable.UseWaitCursor = true;
             // 
             // StartColumn
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.StartColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.StartColumn.HeaderText = "Abfahrtsort";
             this.StartColumn.Name = "StartColumn";
             this.StartColumn.ReadOnly = true;
@@ -152,6 +160,7 @@
             this.showConnectionsButton.TabIndex = 4;
             this.showConnectionsButton.Text = "Verbindungen anzeigen";
             this.showConnectionsButton.UseVisualStyleBackColor = true;
+            this.showConnectionsButton.UseWaitCursor = true;
             this.showConnectionsButton.Click += new System.EventHandler(this.ShowConnectionsButton_Click);
             // 
             // departureLabel
@@ -163,6 +172,7 @@
             this.departureLabel.Size = new System.Drawing.Size(52, 17);
             this.departureLabel.TabIndex = 7;
             this.departureLabel.Text = "Abfahrt:";
+            this.departureLabel.UseWaitCursor = true;
             // 
             // showDeparturesButton
             // 
@@ -172,6 +182,7 @@
             this.showDeparturesButton.TabIndex = 5;
             this.showDeparturesButton.Text = "Abfahrten anzeigen";
             this.showDeparturesButton.UseVisualStyleBackColor = true;
+            this.showDeparturesButton.UseWaitCursor = true;
             this.showDeparturesButton.Click += new System.EventHandler(this.ShowDeparturesButton_Click);
             // 
             // arrivalCombobox
@@ -180,8 +191,9 @@
             this.arrivalCombobox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.arrivalCombobox.Location = new System.Drawing.Point(81, 87);
             this.arrivalCombobox.Name = "arrivalCombobox";
-            this.arrivalCombobox.Size = new System.Drawing.Size(121, 23);
+            this.arrivalCombobox.Size = new System.Drawing.Size(176, 23);
             this.arrivalCombobox.TabIndex = 1;
+            this.arrivalCombobox.UseWaitCursor = true;
             // 
             // startCombobox
             // 
@@ -190,17 +202,19 @@
             this.startCombobox.FormattingEnabled = true;
             this.startCombobox.Location = new System.Drawing.Point(81, 36);
             this.startCombobox.Name = "startCombobox";
-            this.startCombobox.Size = new System.Drawing.Size(121, 23);
+            this.startCombobox.Size = new System.Drawing.Size(176, 23);
             this.startCombobox.TabIndex = 0;
+            this.startCombobox.UseWaitCursor = true;
             // 
             // StationSearchButton
             // 
-            this.StationSearchButton.Location = new System.Drawing.Point(208, 36);
+            this.StationSearchButton.Location = new System.Drawing.Point(263, 33);
             this.StationSearchButton.Name = "StationSearchButton";
             this.StationSearchButton.Size = new System.Drawing.Size(90, 77);
             this.StationSearchButton.TabIndex = 2;
             this.StationSearchButton.Text = "Station suchen";
             this.StationSearchButton.UseVisualStyleBackColor = true;
+            this.StationSearchButton.UseWaitCursor = true;
             this.StationSearchButton.Click += new System.EventHandler(this.StationSearchButton_Click);
             // 
             // GridViewChanger
@@ -213,6 +227,7 @@
             this.GridViewChanger.SelectedIndex = 0;
             this.GridViewChanger.Size = new System.Drawing.Size(479, 465);
             this.GridViewChanger.TabIndex = 10;
+            this.GridViewChanger.UseWaitCursor = true;
             // 
             // ConnectionsTabPage
             // 
@@ -224,6 +239,7 @@
             this.ConnectionsTabPage.TabIndex = 0;
             this.ConnectionsTabPage.Text = "Verbindungen";
             this.ConnectionsTabPage.UseVisualStyleBackColor = true;
+            this.ConnectionsTabPage.UseWaitCursor = true;
             // 
             // DeparturesTabPage
             // 
@@ -235,6 +251,7 @@
             this.DeparturesTabPage.TabIndex = 1;
             this.DeparturesTabPage.Text = "Abfahrten";
             this.DeparturesTabPage.UseVisualStyleBackColor = true;
+            this.DeparturesTabPage.UseWaitCursor = true;
             // 
             // DepartureTable
             // 
@@ -243,12 +260,13 @@
             this.DepartureTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DeparturePlace,
             this.Arrival,
-            this.ShowConnection});
+            this.ShowDepartureTime});
             this.DepartureTable.Location = new System.Drawing.Point(0, 2);
             this.DepartureTable.Name = "DepartureTable";
             this.DepartureTable.RowTemplate.Height = 25;
             this.DepartureTable.Size = new System.Drawing.Size(471, 435);
             this.DepartureTable.TabIndex = 0;
+            this.DepartureTable.UseWaitCursor = true;
             // 
             // DeparturePlace
             // 
@@ -260,11 +278,22 @@
             this.Arrival.HeaderText = "Ankunftsort";
             this.Arrival.Name = "Arrival";
             // 
-            // ShowConnection
+            // ShowDepartureTime
             // 
-            this.ShowConnection.HeaderText = "Verbindung anzeigen";
-            this.ShowConnection.Name = "ShowConnection";
-            this.ShowConnection.UseColumnTextForButtonValue = true;
+            this.ShowDepartureTime.HeaderText = "Abfahrt";
+            this.ShowDepartureTime.Name = "ShowDepartureTime";
+            // 
+            // MapTabPage
+            // 
+            this.MapTabPage.Controls.Add(this.MapWebWebView);
+            this.MapTabPage.Location = new System.Drawing.Point(4, 24);
+            this.MapTabPage.Name = "MapTabPage";
+            this.MapTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MapTabPage.Size = new System.Drawing.Size(471, 437);
+            this.MapTabPage.TabIndex = 2;
+            this.MapTabPage.Text = "Karte";
+            this.MapTabPage.UseVisualStyleBackColor = true;
+            this.MapTabPage.UseWaitCursor = true;
             // 
             // DepartureTimePicker
             // 
@@ -273,25 +302,38 @@
             this.DepartureTimePicker.Location = new System.Drawing.Point(263, 131);
             this.DepartureTimePicker.Name = "DepartureTimePicker";
             this.DepartureTimePicker.ShowUpDown = true;
-            this.DepartureTimePicker.Size = new System.Drawing.Size(71, 23);
+            this.DepartureTimePicker.Size = new System.Drawing.Size(90, 23);
             this.DepartureTimePicker.TabIndex = 11;
+            this.DepartureTimePicker.UseWaitCursor = true;
             this.DepartureTimePicker.Value = new System.DateTime(2022, 4, 28, 15, 56, 54, 0);
             // 
-            // MapTabPage
+            // MapWebWebView
             // 
-            this.MapTabPage.Location = new System.Drawing.Point(4, 24);
-            this.MapTabPage.Name = "MapTabPage";
-            this.MapTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MapTabPage.Size = new System.Drawing.Size(471, 437);
-            this.MapTabPage.TabIndex = 2;
-            this.MapTabPage.Text = "Karte";
-            this.MapTabPage.UseVisualStyleBackColor = true;
+            this.MapWebWebView.AllowExternalDrop = true;
+            this.MapWebWebView.CreationProperties = null;
+            this.MapWebWebView.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.MapWebWebView.Location = new System.Drawing.Point(4, 1);
+            this.MapWebWebView.Name = "MapWebWebView";
+            this.MapWebWebView.Size = new System.Drawing.Size(467, 433);
+            this.MapWebWebView.TabIndex = 0;
+            this.MapWebWebView.ZoomFactor = 1D;
+            // 
+            // SearchStartOnMap
+            // 
+            this.SearchStartOnMap.Location = new System.Drawing.Point(412, 93);
+            this.SearchStartOnMap.Name = "SearchStartOnMap";
+            this.SearchStartOnMap.Size = new System.Drawing.Size(96, 59);
+            this.SearchStartOnMap.TabIndex = 12;
+            this.SearchStartOnMap.Text = "Abfahrt auf der Karte anzeigen";
+            this.SearchStartOnMap.UseVisualStyleBackColor = true;
+            this.SearchStartOnMap.Click += new System.EventHandler(this.SearchStartOnMap_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 676);
+            this.Controls.Add(this.SearchStartOnMap);
             this.Controls.Add(this.DepartureTimePicker);
             this.Controls.Add(this.GridViewChanger);
             this.Controls.Add(this.StationSearchButton);
@@ -304,12 +346,16 @@
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.startCombobox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Swiss Transport";
+            this.UseWaitCursor = true;
+            this.Load += new System.EventHandler(this.OnFormLoad);
             ((System.ComponentModel.ISupportInitialize)(this.connectionsTable)).EndInit();
             this.GridViewChanger.ResumeLayout(false);
             this.ConnectionsTabPage.ResumeLayout(false);
             this.DeparturesTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DepartureTable)).EndInit();
+            this.MapTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MapWebWebView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -335,10 +381,12 @@
         private TabPage ConnectionsTabPage;
         private TabPage DeparturesTabPage;
         private DataGridView DepartureTable;
-        private DataGridViewTextBoxColumn DeparturePlace;
-        private DataGridViewTextBoxColumn Arrival;
-        private DataGridViewButtonColumn ShowConnection;
         private DateTimePicker DepartureTimePicker;
         private TabPage MapTabPage;
+        private DataGridViewTextBoxColumn DeparturePlace;
+        private DataGridViewTextBoxColumn Arrival;
+        private DataGridViewTextBoxColumn ShowDepartureTime;
+        private Microsoft.Web.WebView2.WinForms.WebView2 MapWebWebView;
+        private Button SearchStartOnMap;
     }
 }

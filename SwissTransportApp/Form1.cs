@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using SwissTransport.Core;
 using SwissTransport.Models;
 
@@ -12,32 +13,39 @@ namespace SwissTransportApp
             InitializeComponent();
         }
 
+
+
         
         private void ShowConnectionsButton_Click(object sender, EventArgs e)
         {
             GridViewChanger.SelectedTab = ConnectionsTabPage;
 
-            ITransport transport = new Transport();
+            connectionsTable.Rows.Clear();
+
+                ITransport transport = new Transport();
 
 
-            var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text, DepartureDatePicker.Value, DepartureTimePicker.Value);
+                var connectionsList = transport.GetConnections(startCombobox.Text, arrivalCombobox.Text,DepartureDatePicker.Value, DepartureTimePicker.Value);
 
-            foreach (Connection connections in connectionsList.ConnectionList)
-            {
-                connectionsTable.Rows.Add(
-                    connections.From.Station.Name,
-                    connections.From.Departure,
-                    connections.From.Platform,
-                    connections.To.Station.Name,
-                    connections.To.Arrival
+                foreach (Connection connections in connectionsList.ConnectionList)
+                {
+                    connectionsTable.Rows.Add(
+                        connections.From.Station.Name,
+                        string.Format("{0:t}", connections.From.Departure),
+                        connections.From.Platform,
+                        connections.To.Station.Name,
+                        string.Format("{0:t}", connections.To.Arrival)
 
-                );
-            }
+                    );
+                }
+            
         }
 
         private void ShowDeparturesButton_Click(object sender, EventArgs e)
         {
             GridViewChanger.SelectedTab = DeparturesTabPage;
+
+            DepartureTable.Rows.Clear();
 
             ITransport transport = new Transport();
 
@@ -46,12 +54,10 @@ namespace SwissTransportApp
 
             foreach (StationBoard stationBoard in departureList.Entries)
             {
-                var connectionsList = transport.GetConnections(startCombobox.Text, stationBoard.To, DepartureDatePicker.Value, DepartureTimePicker.Value);
                 DepartureTable.Rows.Add(
                     departureList.Station.Name,
                     stationBoard.To,
-                    "anzeigen"
-
+                    string.Format("{0:t}", stationBoard.Stop.Departure)
 
                 );
 
@@ -95,7 +101,29 @@ namespace SwissTransportApp
 
         }
 
+        private void OnFormLoad(object sender, EventArgs e)
+        {
+            GridViewChanger.SelectedTab = DeparturesTabPage;
+            
+            DepartureDatePicker.Value = DateTime.Now;
+            DepartureTimePicker.Value = DateTime.Now;
 
-        
+            startCombobox.Text = "Adligenswil, Stuben";
+        }
+
+        private void SearchStartOnMap_Click(object sender, EventArgs e)
+        {
+            ITransport transport = new Transport();
+
+            GridViewChanger.SelectedTab = MapTabPage;
+
+            string startStation = startCombobox.Text;
+
+            StringBuilder querryAddress = new StringBuilder();
+
+
+
+        }
     }
+    
 }
